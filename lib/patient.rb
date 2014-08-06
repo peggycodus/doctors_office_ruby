@@ -1,10 +1,29 @@
 class Patient
 
-  attr :first_name, :last_name, :birthday
+  attr :first_name, :last_name, :birthday, :name
 
   def initialize(first_name, last_name, birthday)
     @first_name = first_name
     @last_name = last_name
-    @birthday = birthday
+    @name = first_name + last_name
+    # @birthday = DateTime.parse(birthday, "%m/%d/%Y")
+    puts "#{@birthday}"
+  end
+
+  def ==(another_patient)
+    self.name == another_patient.name
+  end
+
+  def save
+    DB.exec("INSERT INTO patients (last_name, first_name) VALUES ('#{@last_name}', '#{@first_name}');")
+  end
+
+  def self.all
+    patients = []
+    results = DB.exec("SELECT * FROM patients;")
+    results.each do |result|
+      patients << Patient.new(result['name'], result['birthday'])
+    end
+    patients
   end
 end

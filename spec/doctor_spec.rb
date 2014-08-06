@@ -5,6 +5,9 @@ require 'insurance'
 require 'patient'
 require 'pg'
 require 'spec_helper'
+require 'Date'
+require 'Time'
+
 
 describe Doctor do
   it 'allows you to create a doctor if both name and specialty are input' do
@@ -16,18 +19,19 @@ describe Doctor do
     test_doctor = Doctor.new('Dr. Steve', 'Optometrist')
     test_doctor1 = Doctor.new('Dr. Doe', 'Pediatrician')
     test_doctor.save
+    test_doctor1.save
     expect(Doctor.all).to eq [test_doctor, test_doctor1]
   end
 end
 
 describe Patient do
   it 'creates an instance of Patient'do
-    test_patient = Patient.new('Rodger','Johnson', '06\05\1967')
+    test_patient = Patient.new('Rodger','Johnson', '06/05/1967')
     expect(test_patient).to be_an_instance_of Patient
   end
 
   it 'allows you to save a patient to the database if both name and birthday are input' do
-    test_patient = Patient.new('Rodger', 'Johnson', '06\05\1967')
+    test_patient = Patient.new('Rodger', 'Johnson', '')
     test_patient.save
     expect(test_patient).to eq test_patient
   end
@@ -46,5 +50,10 @@ describe Insurance do
   it 'creates an instance of Insurance' do
     test_insurance = Insurance.new('Health Cross')
     expect(test_insurance).to be_an_instance_of Insurance
+  end
+
+  it 'allows you to save an insurance company given the name' do
+    test_insurance = Insurance.new('Red Cross')
+    expect(test_insurance).to eq test_insurance
   end
 end
