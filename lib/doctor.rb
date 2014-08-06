@@ -6,4 +6,8 @@ class Doctor
     @name = name
     @specialty = specialty
   end
+
+  def self.all
+
+  end
 end

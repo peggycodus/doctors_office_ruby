@@ -1,1 +1,0 @@
-insurance_spec.rb
