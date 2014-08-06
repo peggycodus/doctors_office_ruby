@@ -1,6 +1,7 @@
 class Doctor
 
-  attr :name, :specialty
+  attr :name, :specialty, :id
+
 
   def initialize(name, specialty)
     @name = name
@@ -14,8 +15,8 @@ class Doctor
   def self.all
     doctors = []
     results = DB.exec("SELECT * FROM doctors;")
-    results.each do |result|
-      doctors << Doctor.new(result['name'], result['specialty'])
+    results.each do |doctor|
+      doctors << Doctor.new(doctor['name'], doctor['specialty'])
     end
     doctors
   end

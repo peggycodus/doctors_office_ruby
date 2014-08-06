@@ -6,7 +6,7 @@ class Patient
     @first_name = first_name
     @last_name = last_name
     @name = first_name + last_name
-    # @birthday = DateTime.parse(birthday, "%m/%d/%Y")
+    @birthday = Time.strptime(birthday, "%m/%d/%Y")
     puts "#{@birthday}"
   end
 
@@ -15,7 +15,7 @@ class Patient
   end
 
   def save
-    DB.exec("INSERT INTO patients (last_name, first_name) VALUES ('#{@last_name}', '#{@first_name}');")
+    DB.exec("INSERT INTO patients (last_name, first_name, birthday) VALUES ('#{@last_name}', '#{@first_name}', '#{@birthday}');")
   end
 
   def self.all

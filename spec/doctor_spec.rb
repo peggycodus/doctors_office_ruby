@@ -7,6 +7,8 @@ require 'pg'
 require 'spec_helper'
 require 'Date'
 require 'Time'
+require 'table_print'
+require 'pry'
 
 
 describe Doctor do
@@ -22,6 +24,14 @@ describe Doctor do
     test_doctor1.save
     expect(Doctor.all).to eq [test_doctor, test_doctor1]
   end
+
+  # it 'outputs the doctor id, name, and specialty for all doctors' do
+  #   test_doctor = Doctor.new('Dr. Steve', 'Optometrist')
+  #   test_doctor1 = Doctor.new('Dr. Doe', 'Pediatrician')
+  #   test_doctor.save
+  #   test_doctor1.save
+
+  # end
 end
 
 describe Patient do
@@ -31,7 +41,7 @@ describe Patient do
   end
 
   it 'allows you to save a patient to the database if both name and birthday are input' do
-    test_patient = Patient.new('Rodger', 'Johnson', '')
+    test_patient = Patient.new('Rodger', 'Johnson', '06/05/1967')
     test_patient.save
     expect(test_patient).to eq test_patient
   end

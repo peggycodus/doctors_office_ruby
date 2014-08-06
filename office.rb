@@ -1,3 +1,12 @@
+require 'table_print'
+require './lib/doctor'
+require './lib/appointment'
+require './lib/insurance'
+require './lib/patient'
+require 'pg'
+require 'Date'
+require 'Time'
+
 def main_menu
   system 'clear'
   puts "Welcome to the Doctor's Office"
@@ -14,8 +23,14 @@ def main_menu
 end
 
 def doctor_menu
-
+    Doctor.all
 end
+puts "Press 'a' to add a doctor"
+
+puts "Enter the ID to edit or delete a doctor, or add patients"
+puts "Press 'e' to edit this doctor"
+puts "Press 'd' to delete this doctor"
+puts "Press 'p' to add patients for this doctor"
 
 def appointment_menu
 
