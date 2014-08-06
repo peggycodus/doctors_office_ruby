@@ -25,13 +25,14 @@ describe Doctor do
     expect(Doctor.all).to eq [test_doctor, test_doctor1]
   end
 
-  # it 'outputs the doctor id, name, and specialty for all doctors' do
-  #   test_doctor = Doctor.new('Dr. Steve', 'Optometrist')
-  #   test_doctor1 = Doctor.new('Dr. Doe', 'Pediatrician')
-  #   test_doctor.save
-  #   test_doctor1.save
-
-  # end
+  it 'allows you to delete a doctor from the doctors table' do
+    test_doctor = Doctor.new('Dr. Steve', 'Optometrist')
+    test_doctor1 = Doctor.new('Dr. Doe', 'Pediatrician')
+    test_doctor.save
+    test_doctor1.save
+    test_doctor1.delete(self.id)
+    expect(Doctor.all).to eq [test_doctor]
+  end
 end
 
 describe Patient do

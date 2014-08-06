@@ -23,14 +23,44 @@ def main_menu
 end
 
 def doctor_menu
-    Doctor.all
+  system 'clear'
+  tp Doctor.all
+  puts "Press 'a' to add a doctor"
+  puts "Enter the ID to edit or delete a doctor, or add patients"
+  @input_doctors_id = gets.chomp
+  if Doctor.all.has_value?(@input_doctors_id)
+    doctor_sub_menu
+  elsif @input_doctors_id == 'a'
+    puts "Enter the Doctor's name"
+    doc_name = gets.chomp
+    puts "Enter the Doctor's specialty"
+    doc_specialty = gets.chomp
+    new_doc = Doctor.new(doc_name, doc_specialty)
+    new_doc.save
+    puts "You have added #{doc_name} to the database"
+    doctor_menu
+  else
+    puts "That is not a valid input. Please enter an ID from the list."
+    doctor_menu
+  end
 end
-puts "Press 'a' to add a doctor"
 
-puts "Enter the ID to edit or delete a doctor, or add patients"
-puts "Press 'e' to edit this doctor"
-puts "Press 'd' to delete this doctor"
-puts "Press 'p' to add patients for this doctor"
+def doctor_sub_menu
+    puts "Press 'e' to edit this doctor"
+    puts "Press 'd' to delete this doctor"
+    puts "Press 'p' to add patients for this doctor"
+    puts "Press 'm' to return to main menu"
+    @selected_doctor_input = gets.chomp
+    if @selected_doctor_input == 'e'
+    elsif @selected_doctor_input == 'd'
+    elsif @selected_doctor_input == 'p'
+    elsif @selected_doctor_input == 'm'
+      doctor_menu
+    else
+      puts "That is not a valid input. Please enter a valid menu option."
+      doctor_sub_menu
+    end
+end
 
 def appointment_menu
 
